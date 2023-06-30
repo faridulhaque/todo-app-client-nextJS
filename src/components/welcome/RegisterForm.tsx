@@ -3,9 +3,12 @@ import GoogleButton from "./GoogleButton";
 import { useRegisterMutation } from "@/services/queries/authApi";
 import { useRouter } from "next/router";
 
-const RegisterForm = () => {
+type entryTypes = {
+  setRegistered: (e: boolean) => void;
+};
 
-  const router = useRouter()
+const RegisterForm = ({ setRegistered }: entryTypes) => {
+  const router = useRouter();
 
   const [passError, setPassError] = useState("");
 
@@ -36,18 +39,19 @@ const RegisterForm = () => {
     if (password_2 !== password) {
       return setPassError("Password did not match");
     }
+    const { Alert } = await import("react-st-modal");
 
     const result: any = await register({ name, email, password });
 
     if (result?.data?.email) {
-      localStorage.setItem("user",JSON.stringify(result?.data))
-      router.push('/')
+      Alert(
+        "Now you can login with your email and password",
+        "Congratulations! Your registration is successful!"
+      );
+      setRegistered(true);
     } else if (result.error) {
       alert(result?.error?.data?.message);
     }
-
-
-
   };
 
   return (
@@ -118,6 +122,12 @@ const RegisterForm = () => {
           </button>
         </div>
         <GoogleButton></GoogleButton>
+        <p className="text-center text-[#333333] mt-3">
+          Already have an account?
+          <span onClick={() => setRegistered(true)} className="link mr-1">
+            Login here
+          </span>
+        </p>
       </form>
     </div>
   );

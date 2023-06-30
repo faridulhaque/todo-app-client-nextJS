@@ -1,7 +1,20 @@
-import React from "react";
+import { useAddTaskMutation } from "@/services/queries/othersApi";
+import React, { useEffect, useState } from "react";
 
 const AddTaskForm = () => {
-  const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const [email, setEmail] = useState(null);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+
+    if (user) {
+      setEmail(user.email);
+    }
+  }, []);
+
+  const [addData, options] = useAddTaskMutation<any>();
+
+  const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const title = (
@@ -22,15 +35,20 @@ const AddTaskForm = () => {
       time,
       date,
       description,
+      email,
     };
+    const { Alert } = await import("react-st-modal");
 
-    console.log(data);
+    const result: any = await addData(data);
+    if (result?.data?._id) {
+      Alert("Task added successfully", "Done!");
+    }
   };
 
   return (
     <form
       onSubmit={handleForm}
-      className="w-full lg:w-2/5 py-5 flex flex-col items-center bg-white lg:mt-10"
+      className="w-full lg:w-2/5 pt-5 pb-10 flex flex-col items-center bg-white lg:mt-10"
     >
       <div className="w-10/12 mt-5">
         <label className="text-[#3F51B5] mb-2">Title</label>
@@ -74,7 +92,10 @@ const AddTaskForm = () => {
       </div>
 
       <div className="w-10/12 mt-5">
-        <button className="btn bg-[#3F51B5] text-white hover:bg-[#3f51b4] block w-full">
+        <button
+          disabled={options?.isLoading}
+          className="btn bg-[#3F51B5] text-white hover:bg-[#3f51b4] block w-full"
+        >
           Submit
         </button>
       </div>

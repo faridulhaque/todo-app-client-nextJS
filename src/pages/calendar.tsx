@@ -1,10 +1,13 @@
+import RequireUser from "@/components/HOC/RequireUser";
 import CalendarPage from "@/indexes/CalendarPage";
 import React from "react";
 
 const calendar = () => {
   return (
     <>
-      <CalendarPage></CalendarPage>
+      <RequireUser>
+        <CalendarPage></CalendarPage>
+      </RequireUser>
     </>
   );
 };
