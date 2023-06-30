@@ -29,7 +29,7 @@ const HomePage = () => {
     <div className="min-h-screen w-full">
       <Navbar></Navbar>
 
-      <h2 className="text-center text-4xl mt-5">Today&apos;s tasks!</h2>
+      <h2 className="text-center text-4xl mt-5">Upcoming tasks!</h2>
       <p className="text-center text-3xl text-[#333333] mt-5">
         Today is {formattedDate}!{" "}
         {data?.length
