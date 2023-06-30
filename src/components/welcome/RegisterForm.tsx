@@ -121,7 +121,7 @@ const RegisterForm = ({ setRegistered }: entryTypes) => {
             Register
           </button>
         </div>
-        <GoogleButton></GoogleButton>
+        {/* <GoogleButton></GoogleButton> */}
         <p className="text-center text-[#333333] mt-3">
           Already have an account?
           <span onClick={() => setRegistered(true)} className="link mr-1">
