@@ -23,7 +23,12 @@ const WelcomePage = () => {
       }}
     >
       <nav className="w-full h-20 bg-[#3F51B5] flex items-center justify-between fixed top-0">
-        <span className="text-white text-3xl ml-5">My Todo</span>
+        <span
+          onClick={() => router.push("/welcome")}
+          className="text-white text-3xl ml-5"
+        >
+          My Todo
+        </span>
         <button
           onClick={() => router.push("/entry")}
           className="bg-white btn hover:bg-white text-[#3F51B5] mr-5 uppercase"

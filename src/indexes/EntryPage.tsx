@@ -21,7 +21,7 @@ const EntryPage = () => {
   return (
     <div className="h-screen w-full bg-base-200">
       <nav className="w-full h-20 bg-[#3F51B5] flex items-center justify-between">
-        <span className="text-white text-3xl ml-5">My Todo</span>
+        <span onClick={() =>router.push("/welcome")} className="text-white text-3xl ml-5">My Todo</span>
        
       </nav>
 

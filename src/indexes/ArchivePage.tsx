@@ -1,3 +1,4 @@
+import Loading from "@/components/shared/Loading";
 import Navbar from "@/components/shared/Navbar";
 import TaskTable from "@/components/shared/TaskTable";
 import { useGetArchiveTasksQuery } from "@/services/queries/othersApi";
@@ -16,7 +17,7 @@ const ArchivePage = () => {
 
   const { data, isLoading } = useGetArchiveTasksQuery<any>(email);
 
-  if (isLoading) return <h2>Loading...</h2>;
+  if (isLoading) return <Loading></Loading>;
   return (
     <div className="min-h-screen w-full">
       <Navbar></Navbar>
