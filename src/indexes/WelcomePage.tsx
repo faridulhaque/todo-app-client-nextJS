@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 
 const WelcomePage = () => {
   const router = useRouter();
 
-  const user: any = JSON.parse(localStorage.getItem("user") || "null");
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
 
-  if (user?.email) {
-    router.push("/");
-  }
+    if (user?.email) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <div
