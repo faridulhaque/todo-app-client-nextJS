@@ -11,7 +11,7 @@ const WelcomePage = () => {
     if (user?.email) {
       router.push("/");
     }
-  }, []);
+  }, [router]);
 
   return (
     <div
