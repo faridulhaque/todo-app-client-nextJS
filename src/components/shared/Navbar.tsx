@@ -10,7 +10,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOut();
     localStorage.removeItem('user')
-    router.push('/login')
+    router.push('/welcome')
   };
 
   return (

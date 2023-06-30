@@ -1,3 +1,4 @@
+import Loading from "@/components/shared/Loading";
 import LoginForm from "@/components/welcome/LoginForm";
 import RegisterForm from "@/components/welcome/RegisterForm";
 import { useSession } from "next-auth/react";
@@ -11,7 +12,7 @@ const EntryPage = () => {
 
   const router = useRouter();
 
-  if (data?.status === "loading") return <></>;
+  if (data?.status === "loading") return <Loading></Loading>;
 
   if (data?.data?.user?.email) {
     localStorage.setItem("user", JSON.stringify(data?.data?.user));
